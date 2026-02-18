@@ -1,4 +1,4 @@
-# Sibna Protocol v7 - Production Ready
+# Sibna Protocol v8 - Production Ready
 
 **أفضل بروتوكول تشفير للمراسلات الآمنة**
 
