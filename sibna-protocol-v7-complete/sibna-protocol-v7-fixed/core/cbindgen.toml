@@ -1,0 +1,31 @@
+[parse]
+parse_deps = false
+
+[export]
+include = ["SecureContext", "Config", "ProtocolError"]
+exclude = ["RwLock", "Arc"]
+
+[fn]
+sort_by = "Name"
+
+[struct]
+rename_fields = "camelCase"
+
+[enum]
+rename_variants = "ScreamingSnakeCase"
+
+[macro_expansion]
+bitflags = true
+
+[language]
+language = "C"
+
+[header]
+header = "/* Sibna Protocol C Header - Auto Generated */"
+include_guard = "SIBNA_H"
+include_version = true
+
+[defines]
+"target_os = linux" = "SIBNA_LINUX"
+"target_os = windows" = "SIBNA_WINDOWS"
+"target_os = macos" = "SIBNA_MACOS"

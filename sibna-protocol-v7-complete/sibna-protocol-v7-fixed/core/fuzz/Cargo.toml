@@ -1,0 +1,55 @@
+[package]
+name = "sibna-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+sibna = { path = ".." }
+
+[[bin]]
+name = "fuzz_decrypt"
+path = "fuzz_targets/fuzz_decrypt.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_session"
+path = "fuzz_targets/fuzz_session.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_handshake"
+path = "fuzz_targets/fuzz_handshake.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_chain"
+path = "fuzz_targets/fuzz_chain.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_ffi"
+path = "fuzz_targets/fuzz_ffi.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_group"
+path = "fuzz_targets/fuzz_group.rs"
+test = false
+doc = false
+
+[dependencies.x25519-dalek]
+version = "2.0"
+features = ["static_secrets"]
+
+[dependencies.ed25519-dalek]
+version = "2.0"

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Relay Server
+  relay:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - SIBNA_DB_PATH=/data/relay.db
+      - LOG_LEVEL=info
+    volumes:
+      - relay-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Test Client (optional)
+  test-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - relay
+    environment:
+      - SIBNA_SERVER=http://relay:8000
+    command: ["cargo", "test"]
+
+volumes:
+  relay-data:
+
+networks:
+  default:
+    driver: bridge
